@@ -20,3 +20,9 @@ freestyle 自由式
 ```txt
 g++-16 -o main -x main.cpp -std=c++26 -O2 -fcontract-evaluation-semantic=quick_enforce
 ```
+
+##	关于复习功能
+
+我个人喜欢完整复习一遍之前背过的单词, 所以没有给 `rev.md` 删除任何东西.
+
+不过如果你写了个新版本能结合遗忘曲线或者直接删除掉复习时能一遍过的单词, 那也非常棒, 开源社区就需要你这样的人才.
