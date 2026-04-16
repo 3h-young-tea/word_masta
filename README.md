@@ -7,11 +7,12 @@ skateboard 滑板
 sweat_rag 头巾
 mic 麦克风
 freestyle 自由式
+word_masta 单词大师
 ```
 
 的格式放在 `./sql/need.md` 里就能使用了.
 
-注意: `sweat_rag` 中间的空格用下划线代替了, 用空格则会出问题.
+注意: `sweat_rag` 和 `word_masta` 中间的空格用下划线代替了, 用空格则会出问题.
 
 ##	编译方法
 
