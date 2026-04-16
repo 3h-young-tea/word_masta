@@ -1,8 +1,6 @@
 #	word_masta
 
-依赖 [`unda::word`](https://github.com/3h-young-tea/purple) 所以使用了相同的 agplv3.
-
-请把要背的单词以
+把要背的单词以
 
 ```txt
 skateboard 滑板
