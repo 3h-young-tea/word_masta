@@ -2,6 +2,30 @@
 
 using namespace std::literals;
 
+void	chk(const std::string &word, const std::string &mean) {
+	std::println("请输入 {} 对应的英文: ", mean);
+	std::string in;
+	std::cin >> in;
+
+	long tot_in = 1z;
+
+	while (in != word) {
+		std::println("wrong answer");
+		std::print("提示: ");
+
+		for (std::size_t x = 0uz; x + 3uz <= tot_in && x < word.length(); ++x)
+			std::print("{}", word[x]);
+
+		std::println("\n请输入 {} 对应的英文: ", mean);
+
+		std::cin >> in;
+
+		tot_in++;
+	}
+
+	auto _ = std::system("clear");
+}
+
 void	review(void) {
 	std::locale::global(std::locale(""));
 	std::ifstream rev("sql/rev.md");
@@ -10,30 +34,8 @@ void	review(void) {
 
 	auto _ = std::system("clear");
 
-	while (rev >> word >> mean) {
-		std::println("请输入 {} 对应的英文: ", mean);
-
-		std::string in;
-		std::cin >> in;
-
-		long tot_in = 1z;
-
-		while (in != word) {
-			std::println("wrong answer");
-			std::print("提示: ");
-
-			for (std::size_t x = 0uz; x + 3uz <= tot_in && x < word.length(); ++x)
-				std::print("{}", word[x]);
-
-			std::println("\n请输入 {} 对应的英文: ", mean);
-
-			std::cin >> in;
-
-			tot_in++;
-		}
-
-		auto _ = std::system("clear");
-	}
+	while (rev >> word >> mean)
+		chk(word, mean);
 }
 
 void	learn(long max_wordz)
@@ -51,28 +53,7 @@ void	learn(long max_wordz)
 		std::this_thread::sleep_for(2s);
 		auto _ = std::system("clear");
 
-		std::println("请输入 {} 对应的英文: ", mean);
-
-		std::string in;
-		std::cin >> in;
-
-		long tot_in = 1z;
-
-		while (in != word) {
-			std::println("wrong answer");
-			std::print("提示: ");
-
-			for (std::size_t x = 0uz; x + 3uz <= tot_in && x < word.length(); ++x)
-				std::print("{}", word[x]);
-
-			std::println("\n请输入 {} 对应的英文: ", mean);
-
-			std::cin >> in;
-
-			tot_in++;
-		}
-
-		auto _ = std::system("clear");
+		chk(word, mean);
 	}
 }
 
@@ -88,41 +69,15 @@ void	work(long max_wordz)
 	std::ifstream rev("sql/rev.md");
 	rev.imbue(std::locale(""));
 	std::string word, mean;
-	std::queue<std::tuple<std::string, std::string>> q;
+	std::deque<std::tuple<std::string, std::string>> q;
 
-	while (rev >> word >> mean) {
-		q.emplace(word, mean);
+	while (rev >> word >> mean)
+		q.emplace_back(word, mean);
 
-		if (max_wordz < q.size())
-			q.pop();
-	}
+	q.erase(q.begin(), q.begin() + q.size() - max_wordz);
 
-	while (q.size()) {
-		auto &[word, mean] = q.front();
-		q.pop();
-		std::println("请输入 {} 对应的英文: ", mean);
-
-		std::string in;
-		std::cin >> in;
-
-		long tot_in = 1z;
-
-		while (in != word) {
-			std::println("wrong answer");
-			std::print("提示: ");
-
-			for (std::size_t x = 0uz; x + 3uz <= tot_in && x < word.length(); ++x)
-				std::print("{}", word[x]);
-
-			std::println("\n请输入 {} 对应的英文: ", mean);
-
-			std::cin >> in;
-
-			tot_in++;
-		}
-
-		auto _ = std::system("clear");
-	}
+	for (auto &[word, mean] : q)
+		chk(word, mean);
 }
 
 void	solve(void) {
