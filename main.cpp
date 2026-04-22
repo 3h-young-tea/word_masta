@@ -13,6 +13,7 @@ void	chk(const std::string &word, const std::string &mean) {
 		std::println("wrong answer");
 		std::print("提示: ");
 
+		// 给 typing error 两次机会, 从第三次出错开始提示第 0 字, 然后每次多提示一个字
 		for (std::size_t x = 0uz; x + 3uz <= tot_in && x < word.length(); ++x)
 			std::print("{}", word[x]);
 
@@ -27,7 +28,6 @@ void	chk(const std::string &word, const std::string &mean) {
 }
 
 void	review(void) {
-	std::locale::global(std::locale(""));
 	std::ifstream rev("sql/rev.md");
 	rev.imbue(std::locale(""));
 	std::string word, mean;
@@ -40,7 +40,6 @@ void	review(void) {
 
 void	learn(long max_wordz)
 	pre(0z < max_wordz) {
-	std::locale::global(std::locale(""));
 	std::ifstream need("sql/need.md");
 	need.imbue(std::locale(""));
 	std::string word, mean;
@@ -65,7 +64,6 @@ void	clear(long max_wordz)
 
 void	work(long max_wordz)
 	pre(0z < max_wordz) {
-	std::locale::global(std::locale(""));
 	std::ifstream rev("sql/rev.md");
 	rev.imbue(std::locale(""));
 	std::string word, mean;
@@ -82,6 +80,8 @@ void	work(long max_wordz)
 }
 
 void	solve(void) {
+	std::locale::global(std::locale(""));
+
 	review();
 
 	std::println("今天学几个单词?");
@@ -89,9 +89,10 @@ void	solve(void) {
 	std::cin >> max_wordz;
 
 	learn(max_wordz);
+	learn(max_wordz);
 	clear(max_wordz);
 
-	for (long tot_learn = 0z; tot_learn < 4z; ++tot_learn)
+	for (long tot_learn = 0z; tot_learn < 3z; ++tot_learn)
 		work(max_wordz);
 }
 
