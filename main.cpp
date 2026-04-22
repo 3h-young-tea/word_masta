@@ -74,7 +74,8 @@ void	work(long max_wordz)
 	while (rev >> word >> mean)
 		q.emplace_back(word, mean);
 
-	q.erase(q.begin(), q.begin() + q.size() - max_wordz);
+	if (max_wordz < q.size())
+		q.erase(q.begin(), q.begin() + q.size() - max_wordz);
 
 	for (auto &[word, mean] : q)
 		chk(word, mean);
