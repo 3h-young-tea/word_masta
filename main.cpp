@@ -88,8 +88,9 @@ void	solve(void) {
 	long max_wordz;
 	std::cin >> max_wordz;
 
-	learn(max_wordz);
-	learn(max_wordz);
+	for (long tot_learn = 0z; tot_learn < 2z; ++tot_learn)
+		learn(max_wordz);
+
 	clear(max_wordz);
 
 	for (long tot_learn = 0z; tot_learn < 3z; ++tot_learn)
